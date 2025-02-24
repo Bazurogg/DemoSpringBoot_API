@@ -18,8 +18,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @ActiveProfiles("test")
-@RunWith(SpringRunner.class)
-@SpringBootTest
 @AutoConfigureMockMvc
 class PersonControllerIT {
 

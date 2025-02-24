@@ -28,7 +28,7 @@ public class PersonController {
         Optional<Person> person = personService.getPerson(id);
         return person.orElse(null);
     }
-    
+
     @PutMapping("/person/{id}")
     public Person updatePerson(@PathVariable("id") Integer id, @RequestBody Person person) {
         Optional<Person> personOptional = personService.getPerson(id);

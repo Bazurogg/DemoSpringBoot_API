@@ -2,7 +2,7 @@ package fr.afpa.pompey.cda.demospringboot_api.controller;
 
 import fr.afpa.pompey.cda.demospringboot_api.model.Person;
 import fr.afpa.pompey.cda.demospringboot_api.service.PersonService;
-import lombok.Data;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

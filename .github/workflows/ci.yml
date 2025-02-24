@@ -3,7 +3,7 @@ on:
     branches: [master]
     paths:
       - 'src/**'
-      - '.github/workflows/maven.yml'
+      - '.github/workflows/ci.yml'
   pull_request:
     branches: [main]
     paths:
@@ -88,10 +88,17 @@ jobs:
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-m2
 
-      - name: Build jar and analyze SonarCloud
+      - name: Clean & Build Project
+        run: |
+          echo "🧹 Cleaning project..."
+          mvn clean
+          echo "⚙️ Building project..."
+          mvn -B install
+
+      - name: Run SonarCloud Analysis
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: mvn -B clean install sonar:sonar -Dsonar.organization=bazurogg -Dsonar.projectKey=Bazurogg_DemoSpringBoot_API
+        run: mvn sonar:sonar -Dsonar.organization=bazurogg -Dsonar.projectKey=Bazurogg_DemoSpringBoot_API
 
       - name: Charging artefact
         uses: actions/upload-artifact@v4

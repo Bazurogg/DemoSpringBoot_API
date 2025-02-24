@@ -59,7 +59,7 @@ jobs:
           done
 
       - name: Create Database from script
-        run: mysql -h 127.0.0.1 -u${{ secrets.DB_USER }} -p${{ secrets.DB_PASSWORD }} springboot < infra/mysql/dump/springboot.sql
+        run: mysql -u${{ secrets.DB_USER }} -p${{ secrets.DB_PASSWORD }} -e "source infra/mysql/dump/springboot.sql"
 
       - name: Install Chrome for selenium
         uses: browser-actions/setup-chrome@latest

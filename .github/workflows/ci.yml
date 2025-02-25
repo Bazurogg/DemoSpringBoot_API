@@ -60,7 +60,7 @@ jobs:
 
       - name: Check if SQL script exists
         run: |
-          if [ ! -f DemoSpringBoot_API/mysql/script/db_springboot_api.sql ]; then
+          if [ ! -f mysql/script/db_springboot_api.sql ]; then
           echo "❌ SQL script not found!"
           exit 1
           else

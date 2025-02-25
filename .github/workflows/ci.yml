@@ -57,6 +57,10 @@ jobs:
             echo 'Waiting for MySQL...'
             sleep 2
           done
+          
+      - name: Debug MySQL Connection
+        run: |
+          mysqladmin ping -h 127.0.0.1 -u${{ secrets.DB_USER }} -p${{ secrets.DB_PASSWORD }}
 
       - name: Check if SQL script exists
         run: |
@@ -68,7 +72,7 @@ jobs:
           fi
 
       - name: Create Database from script
-        run: mysql -u${{ secrets.DB_USER }} -p${{ secrets.DB_PASSWORD }} springboot < mysql/script/db_springboot_api.sql
+        run: mysql -h 127.0.0.1 -P 3306 -u${{ secrets.DB_USER }} -p${{ secrets.DB_PASSWORD }} springboot < mysql/script/db_springboot_api.sql
 
       - name: Install Chrome for selenium
         uses: browser-actions/setup-chrome@latest

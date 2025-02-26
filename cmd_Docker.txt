@@ -1,0 +1,25 @@
+# Commande bash pour lancer un container Mysql en environment docker
+docker run -d \
+  --name mysql-container \
+  -e MYSQL_ROOT_PASSWORD=groot \
+  -e MYSQL_DATABASE=springboot \
+  -e MYSQL_USER=your_user_here \
+  -e MYSQL_PASSWORD=your_password_here \
+  -p 3307:3306 \
+  mysql:8.0
+
+Explication des variables :
+MYSQL_ROOT_PASSWORD=groot : Définit le mot de passe pour l'utilisateur root de MySQL.
+MYSQL_DATABASE=springboot : Crée une base de données springboot au démarrage.
+MYSQL_USER=your_user_here et MYSQL_PASSWORD=your_password_here : Crée un utilisateur your_user_here avec le mot de passe your_password_here.
+Remplacez your_user_here et your_password_here par les valeurs que vous souhaitez utiliser.
+
+
+# Commande pour lancer le container de l'api
+docker run -d \
+  --name springboot-api-container \
+  -e SPRING_DATASOURCE_URL=jdbc:mysql://host.docker.internal:3307/springboot \
+  -e SPRING_DATASOURCE_USERNAME=root \
+  -e SPRING_DATASOURCE_PASSWORD=groot \
+  -p 9000:9000 \
+  demospringboot-api

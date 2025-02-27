@@ -39,6 +39,9 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Start MySQL
+        run: sudo service mysql start
+
 #   Create a Docker Service of MYSQL instead of starting directly on the system
 
 #    services:
